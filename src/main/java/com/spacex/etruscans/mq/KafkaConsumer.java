@@ -8,6 +8,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -29,5 +30,20 @@ public class KafkaConsumer {
         }
 
         batchConsumeService.batchConsume(messageRecords);
+    }
+
+
+    @KafkaListener(topics = "${kafka.consumer.single.topicName}")
+    public void doListen(KafkaMessageRecord messageRecord) {
+        logger.info(String.format("messageRecord:%s", messageRecord));
+        doConsume(messageRecord);
+    }
+
+    public void doConsume(KafkaMessageRecord messageRecord) {
+        if (messageRecord == null) {
+            return;
+        }
+
+        batchConsumeService.batchConsume(Arrays.asList(messageRecord));
     }
 }
