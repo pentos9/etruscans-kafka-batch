@@ -14,7 +14,6 @@ import java.util.List;
 public class KafkaConsumer {
     private Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
 
-
     @Resource
     private BatchConsumeService batchConsumeService;
 

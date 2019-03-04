@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Configuration
 @EnableKafka
-public class KafkaConfiguration {
+public class KafkaConsumerConfiguration {
     @Value("${kafka.consumer.servers}")
     private String bootstrapServers;
 
